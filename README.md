@@ -27,9 +27,10 @@ Everyone can view the website, but only authorized users can create, edit, delet
 ## JSON data
 You have given access to our data to include and use it in your app using a simple JSON format.
 Access required data by adding "JSON" to the end of url to get its json data,
-for example to get leagues data: https://localhost:5000/leagues/JSON
-to get teams of the first league: https://localhost:5000/leagues/1/JSON
-players of a team: https://localhost:5000/leagues/1/team/1/JSON
+for example :
+* To get leagues data: https://localhost:8000/leagues/JSON
+* To get teams of the first league: https://localhost:8000/leagues/1/JSON
+* Players of a team: https://localhost:5000/leagues/1/team/1/JSON
 
 ## Contribution 
 You are all invited to edit, send suggestions , modify style, extend functionality to include more sports.
