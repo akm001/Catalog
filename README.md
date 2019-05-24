@@ -30,7 +30,7 @@ Access required data by adding "JSON" to the end of url to get its json data,
 for example :
 * To get leagues data: https://localhost:8000/leagues/JSON
 * To get teams of the first league: https://localhost:8000/leagues/1/JSON
-* Players of a team: https://localhost:5000/leagues/1/team/1/JSON
+* Players of a team: https://localhost:8000/leagues/1/team/1/JSON
 
 ## Contribution 
 You are all invited to edit, send suggestions , modify style, extend functionality to include more sports.
