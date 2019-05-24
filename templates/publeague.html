@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>League Info</title>
+</head>
+<body>
+
+
+<header>
+    <div id="left">
+    <h1><a href="{{url_for('showLeagues', leagues=leagues, login_session=login_session)}}">Welcome to the world Leagues</a></h1>
+</div>
+    <div id="right">
+    {% if login_session['user_id'] %}
+
+    <p>{{ login_session['username'] }}
+    <a href="{{url_for('disconnect')}}"> Logout</a></p>
+    {% else %}
+    <a href="{{url_for('showLogin')}}">Login</a>
+
+    {% endif %}
+</div>
+</header>
+
+
+<div id="main">
+<h1>{{ league.name }}</h1>
+
+<h5><a href="{{url_for('newTeam', league_id=league.id)}}">Add a team</a> </h5>
+
+<p>Teams Number: {{league.teams_no}}</p>
+
+{% for team in teams %}
+    <div id="data">
+<a href="{{ url_for('showTeam', team_id = team.id, league_id = league.id)}}"><p>{{ team.teamname }}</p></a>
+    </div>
+        {% endfor %}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Delete League</title>
+</head>
+<body>
+
+
+<header>
+    <div id="left">
+    <h1><a href="{{url_for('showLeagues', leagues=leagues, login_session=login_session)}}">Welcome to the world Leagues</a></h1>
+</div>
+    <div id="right">
+    {% if login_session['user_id'] %}
+
+    <p>{{ login_session['username'] }}
+    <a href="{{url_for('disconnect')}}"> Logout</a></p>
+    {% else %}
+    <a href="{{url_for('showLogin')}}">Login</a>
+
+    {% endif %}
+</div>
+</header>
+
+<div id="main">
+<h1 id="noauth">Are you sure to delete {{leagueToDel.name}} League ?</h1>
+
+<form method="post" action="{{url_for('delLeague', league_id=league_id)}}">
+    <div id="yn">
+    <button class="btn" type="submit" name="yes" value="YES">Yes</button>
+    <button class="btn" type="submit" name="no" value="NO">No</button>
+    </div>
+</form>
+</div>
+</body>
+</html>

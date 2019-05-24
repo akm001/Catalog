@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Team Players</title>
+</head>
+<body>
+
+
+<header>
+    <div id="left">
+    <h1><a href="{{url_for('showLeagues', leagues=leagues, login_session=login_session)}}">Welcome to the world Leagues</a></h1>
+</div>
+    <div id="right">
+    {% if login_session['user_id'] %}
+
+    <p>{{ login_session['username'] }}
+    <a href="{{url_for('disconnect')}}"> Logout</a></p>
+    {% else %}
+    <a href="{{url_for('showLogin')}}">Login</a>
+
+    {% endif %}
+</div>
+</header>
+
+<div id="main">
+<h3><a href="{{url_for('showLeague', league_id = league.id)}}"><p>{{league.name}} League</p></a>
+</h3>
+<h1>{{ team.teamname }}</h1>
+<h5><a href="{{url_for('newPlayer', team_id=team.id, league_id=league.id)}}">Add Player</a> </h5>
+{% for player in players %}
+
+<div id="data">
+<p>Name:        {{ player.playername }}</p>
+<p>T-shirt No.: {{ player.playernumber }}</p>
+<p>Nationality: {{ player.playernationality }}</p>
+<a href="{{url_for('editPlayer', player_id=player.id, league_id=league.id, team_id=team.id)}}">Edit</a>
+<a href="{{url_for('delPlayer', player_id=player.id, league_id=league.id, team_id=team.id)}}">Delete</a>
+</div>
+{% endfor %}
+</div>
+</body>
+</html>

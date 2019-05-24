@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>Player Editing</title>
+</head>
+<body>
+
+
+<header>
+    <div id="left">
+    <h1><a href="{{url_for('showLeagues', leagues=leagues, login_session=login_session)}}">Welcome to the world Leagues</a></h1>
+</div>
+    <div id="right">
+    {% if login_session['user_id'] %}
+
+    <p>{{ login_session['username'] }}
+    <a href="{{url_for('disconnect')}}"> Logout</a></p>
+    {% else %}
+    <a href="{{url_for('showLogin')}}">Login</a>
+
+    {% endif %}
+</div>
+</header>
+
+<div id="main">
+<h1>Editing Player:  {{editedPlayer.playername}} </h1>
+
+<form method="post" action="{{url_for('editPlayer', team_id=team_id, league_id=league_id, player_id=player_id)}}">
+<input type="text" name="player_name" placeholder="{{editedPlayer.playername}}">
+<br>
+<input type="number" name="player_no" placeholder="{{editedPlayer.playernumber}}">
+<br>
+<input type="text" name="player_nation" placeholder="{{editedPlayer.playernationality}}">
+<br>
+<button type="submit">Edit Player</button>
+<button type="reset">Reset</button>
+</form>
+</div>
+
+</body>
+</html>

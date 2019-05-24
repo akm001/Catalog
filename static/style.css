@@ -1,0 +1,128 @@
+
+a {
+    text-decoration: none;
+    color: green;
+}
+
+h2 {
+    color: darkblue;
+}
+
+h1 {
+    color: blue;
+}
+
+#right {
+    position: absolute;
+    text-align: center;
+    right: 15px;
+    top: 25px;
+
+}
+
+#left {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+header{
+    top: 0px;
+    width: 100%;
+    display: block;
+    position: relative;
+    color: red;
+}
+
+html,
+body {
+    top: 0px;
+   margin:0;
+   padding:0;
+   height:100%;
+    position: relative;
+}
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+
+#data {
+    position: relative;
+    float: left;
+    left: 5%;
+    width: 30%;
+    border-style: hidden;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    margin: 5%;
+    border: lawngreen;
+    border-style: dashed;
+    border-radius: 5px;
+}
+
+#signinButton {
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 150px;
+
+}
+
+#fbButton{
+    padding: 0px;
+    width: 145px;
+    margin-bottom: 10px;
+}
+
+
+
+#main {
+    top: 150px;
+    position: absolute;
+    left: 20%;
+    border: darkred double ;
+    border-radius: 10px;
+    text-align: center;
+    width: 60%;
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+}
+
+footer {
+    position: absolute;
+    height: 25px;
+    bottom: 0px;
+    background: gray;
+    color: white;
+    width: 100%;
+    text-align-all: center;
+}
+
+.edit {
+    color: darkblue;
+}
+
+.del {
+    color: red;
+}
+
+#noauth {
+    color: red;
+    text-align: center;
+    position: relative;
+}
+
+.btn {
+    display: inline-block;
+    color: white;
+    background: darkblue;
+    text-align: center;
+
+}
+
+#notauth {
+    left: 25%;
+    color: red;
+}

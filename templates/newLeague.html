@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>New League </title>
+</head>
+<body>
+
+
+
+<header>
+    <div id="left">
+    <h1><a href="{{url_for('showLeagues', leagues=leagues, login_session=login_session)}}">Welcome to the world Leagues</a></h1>
+</div>
+    <div id="right">
+    {% if login_session['user_id'] %}
+
+    <p>{{ login_session['username'] }}
+    <a href="{{url_for('disconnect')}}"> Logout</a></p>
+    {% else %}
+    <a href="{{url_for('showLogin')}}">Login</a>
+
+    {% endif %}
+</div>
+</header>
+
+<div id="main">
+<h1>Create a new League for your Country</h1>
+<br>
+
+<form method="post" action="{{url_for('newLeague')}}" >
+    <input type="text" name="league_name" placeholder="League Name Here!">
+    <br>
+    <br>
+    <input type="number" name="teams_no" placeholder="Number of Teams !">
+    <br> <br>
+    <button type="submit" >Create</button> <button type="reset">Reset</button>
+</form>
+</div>
+</body>
+</html>
