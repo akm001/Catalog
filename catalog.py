@@ -102,7 +102,6 @@ def gconnect():
     answer = requests.get(userinfo_url, params=params)
     data = json.loads(answer.text)
 
-    print(data)
     login_session['username'] = data['name']
     login_session['email'] = data['email']
     login_session['picture'] = data['picture']
@@ -121,7 +120,6 @@ def gconnect():
     output += ' " style = "width: 10%; height: 300px;border-radius: 10%;' \
               '-webkit-border-radius: 10%;-moz-border-radius: 10%;"> '
     flash("you are now logged in as %s" % login_session['username'])
-    print("done!")
 
     return output
 
@@ -130,23 +128,17 @@ def gconnect():
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
-    print(type(access_token))
-    print(access_token)
+
     if access_token is None:
-        print('Access Token is None')
         response = make_response(json.dumps('Current user not connected.'),
                                  401)
         response.headers['Content-Type'] = 'application/json'
         return response
-    print('In gdisconnect access token is %s', access_token)
-    print('User name is: ')
-    print(login_session['username'])
+
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
-    print(url)
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
-    print('result is ')
-    print(result)
+
     if result['status'] == '200':
         del login_session['access_token']
         del login_session['username']
@@ -170,7 +162,6 @@ def fbconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     access_token = request.data
-    print("access token received %s " % access_token)
 
     app_id = json.loads(open('fb_client_secrets.json', 'r').read())[
         'web']['app_id']
@@ -184,28 +175,13 @@ def fbconnect():
 
     # Use token to get user info from API
     userinfo_url = "https://graph.facebook.com/v2.8/me"
-    '''
-    Due to the formatting for the result from the server token exchange
-    we have to split the token first on commas and select the first index
-    which gives us the key : value for the server access token
-    then we split it on colons to pull out the actual token value
-    and replace the remaining quotes with nothing so that it can be used
-    directly in the graph api calls
-    '''
-    print(result)
-#    token = result.split('&')[0]
-#    print(token)
-#    token = result.split(',')[0].split(':')[1].replace('"', '')
-#    print(token)
+
     token = access_token.decode('ascii')
-    print("Token string: " + token)
 
     url = 'https://graph.facebook.com/v2.8/me?access_token=%s&' \
           'fields=name,id,email' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-    print("url sent for API access:%s" % url)
-    print("API JSON result: %s" % result)
     data = json.loads(result)
     login_session['provider'] = 'facebook'
     login_session['username'] = data["name"]
@@ -265,12 +241,10 @@ def disconnect():
             gdisconnect()
 
             del login_session['credentials']
-            print("google disconneted!!")
         if login_session['provider'] == 'facebook':
             fbdisconnect()
             del login_session['facebook_id']
             del login_session['username']
-            print(login_session['user_id'])
             del login_session['user_id']
             del login_session['email']
             del login_session['picture']
